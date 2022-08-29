@@ -12,7 +12,6 @@ Uma API Data-Driven REST que contempla conceitos como Produtos com Categorias, U
 - [x] Login e autenticação
 - [ ] Logout
 - [ ] Regras de perfis e autorização
-- [ ] Regras de perfis e autorização
 - [ ] Segurança nos controlles
 - [ ] Documentação da API
 - [ ] Publicação no servidor Azure
