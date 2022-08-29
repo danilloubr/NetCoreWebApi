@@ -43,7 +43,11 @@
           "dependencies": {
             "Microsoft.AspNetCore.Authentication": {
               "target": "Package",
-              "version": "[*, )"
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[3.1.28, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
