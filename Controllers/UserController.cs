@@ -22,9 +22,9 @@ namespace Shop.Controllers
         [Route("")]
         [Authorize]
         public async Task<ActionResult<User>> GetUsers()
-        {            
-                var users = await _context.Users.AsNoTracking().ToListAsync();
-                return Ok(users);           
+        {
+            var users = await _context.Users.AsNoTracking().ToListAsync();
+            return Ok(users);
         }
 
 
@@ -38,9 +38,15 @@ namespace Shop.Controllers
 
             try
             {
+                if (!string.IsNullOrEmpty(user.Role))
+                {
+                    user.Role = "funcionário".ToUpper();
+                }
+
                 _context.Users.Add(user);
                 await _context.SaveChangesAsync();
-                return Ok(user);
+
+                return Ok(new { message = "Usuário criado com sucesso!" });
             }
             catch (Exception ex)
             {
@@ -95,7 +101,7 @@ namespace Shop.Controllers
             }
             catch
             {
-                return BadRequest(new { message = "Não foi possível atualizar este usuário"});
+                return BadRequest(new { message = "Não foi possível atualizar este usuário" });
             }
         }
 

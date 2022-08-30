@@ -58,8 +58,10 @@ namespace Shop
 
             // Variável de ambiente para teste da aplicação com dados em memória!
             // services.AddDbContext<DataContext>(options => options.UseInMemoryDatabase("Database"));
+
+            // Variável de ambiente para conectar ao banco de dados Sql
             services.AddDbContext<DataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("connectionString")));
-            services.AddScoped<DataContext, DataContext>();
+            // services.AddScoped<DataContext, DataContext>(); // Nas novas versões o AddScoped já vem incluso no método AddDbContext;
 
             services.AddSwaggerGen(swagger => {
                 swagger.SwaggerDoc("v1", new OpenApiInfo { Title = "Shop Api", Version = "v1"});
