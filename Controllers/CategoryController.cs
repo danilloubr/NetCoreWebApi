@@ -24,6 +24,8 @@ public class CategoryController : ControllerBase
     [HttpGet]
     [Route("")]
     [Authorize]
+    //[ResponseCache(VaryByHeader = "User-Agent", Location = ResponseCacheLocation.Any, Duration = 30)] //Método para colocar um Cash de 30 minutos nesse endpoint
+    //[ResponseCache(VaryByHeader = Duration = 30, Location = ResponseCacheLocation.None, NoStore = true )] //Método para remover o endpoint de cash caso use o services.AddResponseCoching(); no classe Startup.cs
     public async Task<ActionResult<List<Category>>> Get()
     {
         var categories = await _context.Categories.AsNoTracking<Category>().ToListAsync();
