@@ -38,12 +38,18 @@ namespace Shop.Controllers
 
             try
             {
-                if (!string.IsNullOrEmpty(user.Role))
+                if (string.IsNullOrEmpty(user.Role))
                 {
                     user.Role = "funcionário".ToUpper();
                 }
 
-                _context.Users.Add(user);
+                var newUser = new User{
+                    UserName = user.UserName,
+                    Password = user.Password,
+                    Role = user.Role.ToUpper()
+                };
+
+                _context.Users.Add(newUser);
                 await _context.SaveChangesAsync();
 
                 return Ok(new { message = "Usuário criado com sucesso!" });

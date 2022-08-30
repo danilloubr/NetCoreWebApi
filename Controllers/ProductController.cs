@@ -79,7 +79,7 @@ namespace Shop.Controllers
 
         [HttpPut]
         [Route("{id:int}")]
-        [Authorize]
+        [Authorize(Roles = "MASTER")]
         public async Task<ActionResult<List<Product>>> Put(int id, [FromBody] Product model)
         {
             // Verifica se o ID ifnromado é o mesmo do modelo
@@ -104,7 +104,7 @@ namespace Shop.Controllers
 
         [HttpDelete]
         [Route("{id:int}")]
-        [Authorize(Roles = "gerente")]
+        [Authorize(Roles = "MASTER")]
         public async Task<ActionResult<List<Product>>> Delete(int id)
         {
             // Verifica se os dados não são inválidos

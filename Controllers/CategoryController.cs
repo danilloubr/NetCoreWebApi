@@ -62,7 +62,7 @@ public class CategoryController : ControllerBase
     /// <param name="Category">The model that we're going to be using for this API.</param>
     [HttpPost]
     [Route("")]
-    [Authorize]
+    [Authorize(Roles = "FUNCIONÁRIO")]
     public async Task<ActionResult<List<Category>>> Post([FromBody] Category model)
     {
         if (!ModelState.IsValid)
