@@ -5,6 +5,7 @@ using Shop.Models;
 using Shop.Data;
 using System;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 [Route("categories")]
 public class CategoryController : ControllerBase
@@ -22,6 +23,7 @@ public class CategoryController : ControllerBase
     /// </summary>
     [HttpGet]
     [Route("")]
+    [Authorize]
     public async Task<ActionResult<List<Category>>> Get()
     {
         var categories = await _context.Categories.AsNoTracking<Category>().ToListAsync();
@@ -34,6 +36,7 @@ public class CategoryController : ControllerBase
 /// <param name="id">The id of the category you want to get</param>
     [HttpGet]
     [Route("{id:int}")]
+    [Authorize]
     public async Task<ActionResult<Category>> GetById(int id)
     {
         var category = await _context.Categories.FirstOrDefaultAsync( category => category.Id == id);
@@ -57,6 +60,7 @@ public class CategoryController : ControllerBase
     /// <param name="Category">The model that we're going to be using for this API.</param>
     [HttpPost]
     [Route("")]
+    [Authorize]
     public async Task<ActionResult<List<Category>>> Post([FromBody] Category model)
     {
         if (!ModelState.IsValid)
@@ -81,6 +85,7 @@ public class CategoryController : ControllerBase
     /// <param name="Category">The model that will be used to update the database.</param>
     [HttpPut]
     [Route("{id:int}")]
+    [Authorize]
     public async Task<ActionResult<List<Category>>> Put(int id, [FromBody] Category model)
     {
         // Verifica se o ID ifnromado é o mesmo do modelo
@@ -110,6 +115,7 @@ public class CategoryController : ControllerBase
     /// delete.</param>
     [HttpDelete]
     [Route("{id:int}")]
+    [Authorize]
     public async Task<ActionResult<List<Category>>> Delete(int id)
     {
         // Verifica se os dados não são inválidos
@@ -128,7 +134,7 @@ public class CategoryController : ControllerBase
         }
         catch
         {
-            return BadRequest(new { message = "Não foi possível atualizar esta categoria"});
+            return BadRequest(new { message = "Não foi possível remover esta categoria"});
         }
     }
 
